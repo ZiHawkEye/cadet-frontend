@@ -23,7 +23,7 @@ import { NavLink } from 'react-router-dom'
 import defaultCoverImage from '../../assets/default_cover_image.jpg'
 import AssessmentWorkspaceContainer from '../../containers/assessment/AssessmentWorkspaceContainer'
 import EditingWorkspaceContainer from '../../containers/missionControl/EditingWorkspaceContainer'
-import { store } from '../../createStore';
+import { store } from '../../createStore'
 import { beforeNow, getPrettyDate } from '../../utils/dateHelpers'
 import { assessmentCategoryLink, stringParamToInt } from '../../utils/paramParseHelpers'
 import { retrieveLocalAssessmentOverview } from '../../utils/xmlParser'
@@ -31,7 +31,7 @@ import {
   AssessmentCategory,
   AssessmentStatuses,
   GradingStatuses,
-  IAssessmentOverview,
+  IAssessmentOverview
 } from '../assessment/assessmentShape'
 import { OwnProps as AssessmentProps } from '../assessment/AssessmentWorkspace'
 import { EditingOverviewCard } from '../assessment/EditingOverviewCard'
@@ -72,7 +72,7 @@ type State = {
   showClosedAssessments: boolean
   showOpenedAssessments: boolean
   showUpcomingAssessments: boolean
-  editingOverview: IAssessmentOverview | null;
+  editingOverview: IAssessmentOverview | null
 }
 
 class Assessment extends React.Component<IAssessmentProps, State> {
@@ -86,22 +86,22 @@ class Assessment extends React.Component<IAssessmentProps, State> {
       showClosedAssessments: false,
       showOpenedAssessments: true,
       showUpcomingAssessments: true,
-      editingOverview: null,
+      editingOverview: null
     }
   }
 
-  public componentDidMount(){
+  public componentDidMount() {
     // Circumvents "Reference Error: localStorage is not defined in tests"
-    let editingOverviewStr: string | null;
+    let editingOverviewStr: string | null
     try {
-        editingOverviewStr = localStorage.getItem('MissionEditingOverviewSA');
+      editingOverviewStr = localStorage.getItem('MissionEditingOverviewSA')
     } catch (e) {
-        editingOverviewStr = null;
+      editingOverviewStr = null
     }
     if (editingOverviewStr) {
       this.setState({
         ...this.state,
-        editingOverview: retrieveLocalAssessmentOverview(),
+        editingOverview: retrieveLocalAssessmentOverview()
       })
     }
   }
@@ -113,7 +113,7 @@ class Assessment extends React.Component<IAssessmentProps, State> {
 
     // If mission for testing is to render, create workspace
     if (assessmentId === -1) {
-      if (this.state.editingOverview){
+      if (this.state.editingOverview) {
         const overview = this.state.editingOverview
         const assessmentProps: AssessmentProps = {
           assessmentId,
@@ -173,12 +173,12 @@ class Assessment extends React.Component<IAssessmentProps, State> {
         )
 
       /** Mission editing card */
-      const missionEditingCard = this.state.editingOverview
-        ? <EditingOverviewCard 
-          overview={this.state.editingOverview} 
+      const missionEditingCard = this.state.editingOverview ? (
+        <EditingOverviewCard
+          overview={this.state.editingOverview}
           updateEditingOverview={this.updateEditingOverview}
-          />
-        : null
+        />
+      ) : null
 
       /** Render cards */
       const upcomingCardsCollapsible =
@@ -212,7 +212,8 @@ class Assessment extends React.Component<IAssessmentProps, State> {
         ) : null
       display = (
         <>
-          <ImportFromFileComponent store={store}
+          <ImportFromFileComponent
+            store={store}
             updateEditingOverview={this.updateEditingOverview}
           />
           {missionEditingCard}
