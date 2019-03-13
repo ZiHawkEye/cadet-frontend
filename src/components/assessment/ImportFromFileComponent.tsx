@@ -11,8 +11,7 @@ import { makeEntireAssessment, retrieveLocalAssessment } from '../../utils/xmlPa
 import {
   assessmentTemplate, 
   overviewTemplate,
-} from '../incubator/assessmentTemplates'
-
+} from '../missionControl/assessmentTemplates'
 
 interface IDispatchProps {
   newAssessment: (assessment: IAssessment) => void

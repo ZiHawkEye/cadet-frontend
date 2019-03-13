@@ -22,7 +22,8 @@ import { NavLink } from 'react-router-dom'
 
 import defaultCoverImage from '../../assets/default_cover_image.jpg'
 import AssessmentWorkspaceContainer from '../../containers/assessment/AssessmentWorkspaceContainer'
-import EditingWorkspaceContainer from '../../containers/incubator/EditingWorkspaceContainer'
+import EditingWorkspaceContainer from '../../containers/missionControl/EditingWorkspaceContainer'
+import { store } from '../../createStore';
 import { beforeNow, getPrettyDate } from '../../utils/dateHelpers'
 import { assessmentCategoryLink, stringParamToInt } from '../../utils/paramParseHelpers'
 import { retrieveLocalAssessmentOverview } from '../../utils/xmlParser'
@@ -90,7 +91,13 @@ class Assessment extends React.Component<IAssessmentProps, State> {
   }
 
   public componentDidMount(){
-    const editingOverviewStr: any = localStorage.getItem('MissionEditingOverviewSA');
+    // Circumvents "Reference Error: localStorage is not defined in tests"
+    let editingOverviewStr: string | null;
+    try {
+        editingOverviewStr = localStorage.getItem('MissionEditingOverviewSA');
+    } catch (e) {
+        editingOverviewStr = null;
+    }
     if (editingOverviewStr) {
       this.setState({
         ...this.state,
@@ -205,7 +212,7 @@ class Assessment extends React.Component<IAssessmentProps, State> {
         ) : null
       display = (
         <>
-          <ImportFromFileComponent 
+          <ImportFromFileComponent store={store}
             updateEditingOverview={this.updateEditingOverview}
           />
           {missionEditingCard}

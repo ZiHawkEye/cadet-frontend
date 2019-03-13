@@ -4,8 +4,8 @@ import * as React from 'react'
 import { Redirect, Route, RouteComponentProps, Switch } from 'react-router'
 
 import Academy from '../containers/academy'
-import IncubatorContainer from '../containers/incubator'
 import Login from '../containers/LoginContainer'
+import IncubatorContainer from '../containers/missionControl'
 import Playground from '../containers/PlaygroundContainer'
 import { Role, sourceChapters } from '../reducers/states'
 import { ExternalLibraryName, ExternalLibraryNames } from './assessment/assessmentShape'
@@ -55,7 +55,7 @@ class Application extends React.Component<IApplicationProps, {}> {
           <Switch>
             <Route path="/academy" component={toAcademy(this.props)} />
             <Route
-              path={`/incubator/${assessmentRegExp}`}
+              path={`/missionControl/${assessmentRegExp}`}
               render={assessmentRenderFactory("Missions")}
             />
             <Route path="/playground" component={Playground} />

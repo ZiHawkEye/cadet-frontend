@@ -4,7 +4,7 @@ import { bindActionCreators, Dispatch } from 'redux'
 
 import { fetchAssessmentOverviews, submitAssessment, updateAssessment } from '../../actions/session'
 import { IAssessmentOverview } from '../../components/assessment/assessmentShape'
-import Assessment, { IDispatchProps, IOwnProps, IStateProps } from '../../components/incubator'
+import Assessment, { IDispatchProps, IOwnProps, IStateProps } from '../../components/missionControl'
 import { IState, Role } from '../../reducers/states'
 
 const mapStateToProps: MapStateToProps<IStateProps, IOwnProps, IState> = (state, props) => {

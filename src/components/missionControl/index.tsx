@@ -5,7 +5,7 @@ import {
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router'
 
-import EditingWorkspaceContainer from '../../containers/incubator/EditingWorkspaceContainer'
+import EditingWorkspaceContainer from '../../containers/missionControl/EditingWorkspaceContainer'
 import { stringParamToInt } from '../../utils/paramParseHelpers'
 import { retrieveLocalAssessmentOverview } from '../../utils/xmlParser'
 import {
@@ -79,7 +79,7 @@ class Assessment extends React.Component<IAssessmentProps, State> {
         }
         return (
           <div className="Academy">
-            <EditingWorkspaceContainer {...assessmentProps} listingPath='/incubator' />
+            <EditingWorkspaceContainer {...assessmentProps} listingPath='/missionControl' />
           </div>
         )
       }
@@ -109,7 +109,7 @@ class Assessment extends React.Component<IAssessmentProps, State> {
         ? <EditingOverviewCard 
           overview={this.state.editingOverview} 
           updateEditingOverview={this.updateEditingOverview}
-          listingPath='/incubator'
+          listingPath='/missionControl'
           />
         : null
 

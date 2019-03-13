@@ -8,7 +8,7 @@ import {
   IMCQQuestion,
 } from '../../assessment/assessmentShape'
 import Markdown from '../../commons/Markdown'
-import { mcqTemplate, programmingTemplate } from '../../incubator/assessmentTemplates';
+import { mcqTemplate, programmingTemplate } from '../../missionControl/assessmentTemplates';
 
 interface IProps {
 	assessment: IAssessment,
